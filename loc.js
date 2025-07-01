@@ -45,7 +45,7 @@ function getBadge(data1) {
     badge.innerHTML = `<img src="https://img.shields.io/badge/Lines_of_Code-${totalEntry.linesOfCode}-blue" alt="Lines of Code">`;
 
     const badgeURL = document.getElementById('badgeUrl');
-    badgeURL.value = `[![LineUp badge](https://img.shields.io/badge/Lines-${totalEntry.linesOfCode}-blue](https://lineup-github.vercel.app)`
+    badgeURL.value = `[![LineUp badge](https://img.shields.io/badge/Lines_of_Code-${totalEntry.linesOfCode}-blue](https://lineup-github.vercel.app)`
 }
 
 function parseData(data, includeTotal = True) {
