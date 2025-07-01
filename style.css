@@ -53,3 +53,26 @@ button {
 button:hover {
     background-color: #404040;
 }
+footer {
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    color: #888;
+    margin-top: 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    text-align: center;
+    width: 100%;
+}
+footer a {
+    color: #888;
+    text-decoration: underline;
+}
+#status {
+    display:none;
+}
+#badgeContainer {
+    display: none;
+}
