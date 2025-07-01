@@ -4,8 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LineUp</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="icon.png" type="image/png">
 </head>
 <body>
-    
+    <header>
+        <img src="icon.png" alt="LineUp Logo" class="logo", width="50" height="50">
+        <h1>LineUp</h1>
+    </header>
+    <div class="content">
+        <p>Generate a badge counting lines of code for any GitHub repository!</p>
+        <form id="repoForm">
+            <center>
+                <input type="text" id="repoInput" name="repoInput" placeholder="user/repo" required><p></p>
+                <button type="submit">Generate Badge</button>
+            </center>
+        </form>
+    </div>
+    <footer>
+        <p>Made with ❤️ by <a href="https://github.com/v-pun215" target="_blank">v-pun215</a></p>
+    </footer>
 </body>
 </html>
