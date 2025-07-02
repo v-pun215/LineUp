@@ -16,7 +16,7 @@ async function fetchData(value) {
   try {
     const response = await fetch(`https://api.codetabs.com/v1/loc/?github=${value}`);
     if (!response.ok) {
-      throw new Error('Invalid user/repo format or repository/user not found');
+      throw new Error('Invalid user/repo format or repository/user not found.');
     }
     const data = await response.json();
     console.log(data);
@@ -24,14 +24,16 @@ async function fetchData(value) {
     getBadge(data);
   } catch (error) {
     console.error('Error fetching data:', error);
-    document.getElementById('status').style.display = 'none';
-    alert(error.message);
+    document.getElementById('status').style.display = 'block';
+    document.getElementById('status').innerText =error.message;
   }
 }
 
 function getBadge(data1) {
     const badge = document.getElementById('badge');
     const badgeContainer = document.getElementById('badgeContainer');
+    const badgeStyle = document.getElementById('style').value;
+    const color = document.getElementById('color').value;
     badge.style.display = 'block';
     badgeContainer.style.display = 'block';
 
@@ -42,10 +44,10 @@ function getBadge(data1) {
     const totalEntry = data1.find(entry => entry.language.toLowerCase() === "total");
 
     //alert(`Total lines of code: ${totalEntry.linesOfCode}`);
-    badge.innerHTML = `<img src="https://img.shields.io/badge/Lines_of_Code-${totalEntry.linesOfCode}-blue" alt="Lines of Code">`;
+    badge.innerHTML = `<img src="https://img.shields.io/badge/Lines_of_Code-${totalEntry.linesOfCode}-blue?style=${badgeStyle}&color=${color}" alt="Lines of Code">`;
 
     const badgeURL = document.getElementById('badgeUrl');
-    badgeURL.value = `[![LineUp badge](https://img.shields.io/badge/Lines_of_Code-${totalEntry.linesOfCode}-blue](https://lineup-github.vercel.app)`
+    badgeURL.value = `[![LineUp Badge](https://img.shields.io/badge/Lines_of_Code-${totalEntry.linesOfCode}-blue?style=${badgeStyle}](https://lineup-github.vercel.app)`
 }
 
 function parseData(data, includeTotal = True) {
@@ -58,3 +60,13 @@ function parseData(data, includeTotal = True) {
 
   return result;
 }
+
+const colorPicker = document.getElementById('color');
+const colorPreview = document.querySelector('.color-preview');
+
+colorPicker.addEventListener('input', function() {
+  colorPreview.style.backgroundColor = this.value;
+});
+
+// Initial color preview update
+colorPreview.style.backgroundColor = colorPicker.value;

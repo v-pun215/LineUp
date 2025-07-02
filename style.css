@@ -23,7 +23,7 @@ header {
     width:105vh;
     margin: 20px auto;
 }
-input[type="text"] {
+.inputtext {
     width: 100vh;
     padding: 10px;
     margin: 5x 0;
@@ -41,6 +41,7 @@ input[type="text"]:focus {
     outline: none;
 }
 button {
+    margin-top: 2vh;
     padding: 10px 20px;
     background-color: #282828;
     color: white;
@@ -75,4 +76,27 @@ footer a {
 }
 #badgeContainer {
     display: none;
+}
+
+#badgeCustomization {
+    display: flex;
+    gap:10px;
+    justify-content: center;
+}
+select {
+    padding: 5px;
+    border: 1px solid #282828;
+    border-radius: 4px;
+    background-color: #1A1A1A;
+    color: white;
+    font-family: 'Inter', sans-serif;
+}
+.smallText {
+    padding: 5px;
+    margin: 5x 0;
+    border: 1px solid #282828;
+    border-radius: 4px;
+    background-color: #1A1A1A;
+    color: white;
+    font-family: 'Inter', sans-serif;
 }

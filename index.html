@@ -13,19 +13,36 @@
         <h1>LineUp</h1>
     </header>
     <div class="content">
+        
         <p>Generate a badge counting lines of code for any GitHub repository!</p>
         <form id="repoForm">
             <center>
-                <input type="text" id="repoInput" name="repoInput" placeholder="user/repo" required><p></p>
+                <input class="inputtext" type="text" id="repoInput" name="repoInput" placeholder="user/repo" required><p></p>
+                <div id="badgeCustomization">
+                    <label style="margin-top: 0.4vh;" for="style">Badge Color:</label>
+                    <input class="smallText" type="text" id="color" name="color" placeholder="color name/hex code" value="blue">
+                    <label style="margin-top: 0.4vh;" for="style">Badge Style:</label>
+                    <select id="style" name="style">
+                        <option value="flat">Flat</option>
+                        <option value="flat-square">Flat Square</option>
+                        <option value="plastic">Plastic</option>
+                        <option value="for-the-badge">For the Badge</option>
+                        <option value="social">Social</option>
+                    </select>
+                    
+                </div>
                 <button type="submit">Generate Badge</button>
             </center>
         </form>
-        <p id="status">Response</p>
+        <p style="text-align: center;" id="status">Response</p>
+        
         <div id="badgeContainer">
             <p>Badge generated!</p>
             <span id="badge"></span>
             <p>Copy the badge URL below:</p>
-            <input type="text" id="badgeUrl" readonly>
+            <center>
+                <input class="inputtext" type="text" id="badgeUrl" readonly>
+            </center>
 
         </div>
     </div>
