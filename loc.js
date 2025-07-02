@@ -30,26 +30,50 @@ async function fetchData(value) {
 }
 
 function getBadge(data1) {
-    const badge = document.getElementById('badge');
     const badgeContainer = document.getElementById('badgeContainer');
+    const allBadges = document.getElementById('allBadges');
     const badgeStyle = document.getElementById('style').value;
     const color = document.getElementById('color').value;
-    badge.style.display = 'block';
-    badgeContainer.style.display = 'block';
 
-    //data = parseData(data, true);
-    console.log(data1); 
-    
+    badgeContainer.style.display = 'block';
+    allBadges.innerHTML = '';
+
+    const badgeUrlInput = document.getElementById('badgeUrl');
+
+
+    const createBadge = (label, count) => {
+        const badgeURL = `https://img.shields.io/badge/${encodeURIComponent(label)}-${count}-blue?style=${badgeStyle}&color=${color}`;
+        const markdown = `[![${label} LOC](${badgeURL})](https://lineup-github.vercel.app)`;
+
+        const badge = document.createElement('img');
+        badge.src = badgeURL;
+        badge.alt = `${label} LOC`;
+        badge.style.cursor = 'pointer';
+        badge.style.margin = '5px';
+
+        badge.onclick = () => {
+            badgeUrlInput.value = markdown;
+        };
+
+        allBadges.appendChild(badge);
+
+        return markdown;
+    };
+
 
     const totalEntry = data1.find(entry => entry.language.toLowerCase() === "total");
+    if (totalEntry) {
+        const totalMarkdown = createBadge('Total', totalEntry.linesOfCode);
+        
+        badgeUrlInput.value = totalMarkdown;
+    }
 
-    //alert(`Total lines of code: ${totalEntry.linesOfCode}`);
-    badge.innerHTML = `<img src="https://img.shields.io/badge/Lines_of_Code-${totalEntry.linesOfCode}-blue?style=${badgeStyle}&color=${color}" alt="Lines of Code">`;
-
-    const badgeURL = document.getElementById('badgeUrl');
-    badgeURL.value = `[![LineUp Badge](https://img.shields.io/badge/Lines_of_Code-${totalEntry.linesOfCode}-blue?style=${badgeStyle}](https://lineup-github.vercel.app)`
+    
+    data1.forEach(entry => {
+        if (entry.language.toLowerCase() === "total") return;
+        createBadge(entry.language, entry.linesOfCode);
+    });
 }
-
 function parseData(data, includeTotal = True) {
   const result = {};
 
@@ -60,13 +84,3 @@ function parseData(data, includeTotal = True) {
 
   return result;
 }
-
-const colorPicker = document.getElementById('color');
-const colorPreview = document.querySelector('.color-preview');
-
-colorPicker.addEventListener('input', function() {
-  colorPreview.style.backgroundColor = this.value;
-});
-
-// Initial color preview update
-colorPreview.style.backgroundColor = colorPicker.value;
